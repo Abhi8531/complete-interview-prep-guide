@@ -7,12 +7,15 @@ This guide will help you deploy the Complete Interview Prep Platform to Vercel s
 ## ✅ Pre-Deployment Checklist
 
 ### 1. **Build Verification**
+
 ```bash
 npm run build
 ```
+
 ✅ Build should complete without errors
 
 ### 2. **Environment Variables Setup**
+
 The app requires these optional environment variables for full functionality:
 
 ```env
@@ -28,41 +31,49 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 ### Option 1: Deploy via Vercel CLI
 
 1. **Install Vercel CLI**
+
 ```bash
 npm i -g vercel
 ```
 
 2. **Login to Vercel**
+
 ```bash
 vercel login
 ```
 
 3. **Deploy**
+
 ```bash
 vercel
 ```
 
 4. **Add Environment Variables** (optional)
+
 ```bash
-vercel env add NEXT_PUBLIC_OPENAI_API_KEY
-vercel env add NEXT_PUBLIC_SUPABASE_URL
-vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY
+# Add environment variables one by one
+vercel env add NEXT_PUBLIC_OPENAI_API_KEY production
+vercel env add NEXT_PUBLIC_SUPABASE_URL production
+vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY production
 ```
 
 ### Option 2: Deploy via Vercel Dashboard
 
 1. **Connect Repository**
+
    - Go to [vercel.com](https://vercel.com)
    - Click "New Project"
    - Import your GitHub repository
 
 2. **Configure Build Settings**
+
    - Framework Preset: **Next.js**
    - Build Command: `npm run build`
    - Output Directory: `.next`
    - Install Command: `npm install`
 
 3. **Add Environment Variables** (optional)
+
    - Go to Project Settings → Environment Variables
    - Add the variables listed above
 
@@ -72,21 +83,18 @@ vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY
 ## 🔧 Configuration Files
 
 ### `vercel.json` (already included)
+
 ```json
 {
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "framework": "nextjs",
-  "regions": ["iad1"],
-  "env": {
-    "NEXT_PUBLIC_OPENAI_API_KEY": "@openai_api_key",
-    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url", 
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key"
-  }
+  "regions": ["iad1"]
 }
 ```
 
 ### `next.config.js` (already optimized)
+
 - Configured for standalone output
 - OpenAI package externalized
 - Production optimizations enabled
@@ -96,6 +104,7 @@ vercel env add NEXT_PUBLIC_SUPABASE_ANON_KEY
 The app is fully functional without any external API keys:
 
 ✅ **Core Features:**
+
 - Complete 30-week study roadmap
 - Progress tracking
 - Topic and subtopic management
@@ -105,6 +114,7 @@ The app is fully functional without any external API keys:
 - Smart study recommendations
 
 ✅ **Enhanced Features with API Keys:**
+
 - **OpenAI**: AI-powered study recommendations and intelligent scheduling
 - **Supabase**: Cloud data sync and backup
 
@@ -118,6 +128,7 @@ The app includes these API routes that work on Vercel:
 ## 🛠️ Troubleshooting
 
 ### Build Issues
+
 ```bash
 # Clear Next.js cache
 rm -rf .next
@@ -125,11 +136,13 @@ npm run build
 ```
 
 ### Environment Variables Not Working
+
 - Ensure variables start with `NEXT_PUBLIC_` for client-side access
 - Check Vercel dashboard for proper variable setup
 - Redeploy after adding variables
 
 ### Performance Optimization
+
 - The app uses dynamic imports for client-side only components
 - Zustand store is configured with persistence
 - Images and assets are optimized for Vercel
@@ -144,6 +157,7 @@ npm run build
 ## 🌍 Live Demo
 
 Once deployed, your app will include:
+
 - **Homepage**: Complete study dashboard
 - **Schedule View**: AI-powered daily schedules
 - **Progress Tracking**: Visual analytics
@@ -160,4 +174,4 @@ If you encounter any deployment issues:
 
 ---
 
-**🎉 Ready to Deploy!** The app is fully optimized for Vercel deployment with zero-configuration setup. 
+**🎉 Ready to Deploy!** The app is fully optimized for Vercel deployment with zero-configuration setup.

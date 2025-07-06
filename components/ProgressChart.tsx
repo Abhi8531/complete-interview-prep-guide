@@ -3,9 +3,22 @@
 import { useStudyStore } from '@/lib/store';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { cppRoadmap } from '@/data/roadmap';
+import { useState, useEffect } from 'react';
 
 export default function ProgressChart() {
   const { studyPlan } = useStudyStore();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   if (!studyPlan) return null;
 
@@ -44,6 +57,15 @@ export default function ProgressChart() {
     return null;
   };
 
+  // Custom label formatter for responsive display
+  const formatXAxisLabel = (value: string, index: number) => {
+    if (isMobile) {
+      // Show short format on mobile, but only every 3rd label to avoid crowding
+      return index % 3 === 0 ? value.replace('Week ', 'W') : '';
+    }
+    return value;
+  };
+
   return (
     <div className="w-full">
       <ResponsiveContainer width="100%" height={250} className="sm:!h-[300px] lg:!h-[350px]">
@@ -58,11 +80,12 @@ export default function ProgressChart() {
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
           <XAxis 
-            dataKey={{ xs: 'weekShort', sm: 'week' }}
-            tick={{ fontSize: 10 }}
+            dataKey="week"
+            tick={{ fontSize: isMobile ? 8 : 10 }}
             tickLine={{ stroke: '#d1d5db' }}
             axisLine={{ stroke: '#d1d5db' }}
-            interval="preserveStartEnd"
+            interval={isMobile ? 2 : 'preserveStartEnd'}
+            tickFormatter={formatXAxisLabel}
             className="text-xs sm:text-sm"
           />
           <YAxis 
@@ -71,9 +94,9 @@ export default function ProgressChart() {
               value: 'Topics', 
               angle: -90, 
               position: 'insideLeft',
-              style: { textAnchor: 'middle', fontSize: '12px' }
+              style: { textAnchor: 'middle', fontSize: isMobile ? '10px' : '12px' }
             }}
-            tick={{ fontSize: 10 }}
+            tick={{ fontSize: isMobile ? 8 : 10 }}
             tickLine={{ stroke: '#d1d5db' }}
             axisLine={{ stroke: '#d1d5db' }}
             className="text-xs"
@@ -85,10 +108,10 @@ export default function ProgressChart() {
               value: 'Progress %', 
               angle: 90, 
               position: 'insideRight',
-              style: { textAnchor: 'middle', fontSize: '12px' }
+              style: { textAnchor: 'middle', fontSize: isMobile ? '10px' : '12px' }
             }}
             domain={[0, 100]}
-            tick={{ fontSize: 10 }}
+            tick={{ fontSize: isMobile ? 8 : 10 }}
             tickLine={{ stroke: '#d1d5db' }}
             axisLine={{ stroke: '#d1d5db' }}
             className="text-xs"
@@ -98,7 +121,7 @@ export default function ProgressChart() {
             cursor={{ strokeDasharray: '3 3' }}
           />
           <Legend 
-            wrapperStyle={{ fontSize: '12px' }}
+            wrapperStyle={{ fontSize: isMobile ? '10px' : '12px' }}
             iconType="line"
           />
           <Line 
@@ -108,8 +131,8 @@ export default function ProgressChart() {
             stroke="#3b82f6" 
             name="Completed Topics"
             strokeWidth={2}
-            dot={{ r: 3, strokeWidth: 2 }}
-            activeDot={{ r: 4, strokeWidth: 0 }}
+            dot={{ r: isMobile ? 2 : 3, strokeWidth: 2 }}
+            activeDot={{ r: isMobile ? 3 : 4, strokeWidth: 0 }}
           />
           <Line 
             yAxisId="right"
@@ -118,8 +141,8 @@ export default function ProgressChart() {
             stroke="#10b981" 
             name="Progress %"
             strokeWidth={2}
-            dot={{ r: 3, strokeWidth: 2 }}
-            activeDot={{ r: 4, strokeWidth: 0 }}
+            dot={{ r: isMobile ? 2 : 3, strokeWidth: 2 }}
+            activeDot={{ r: isMobile ? 3 : 4, strokeWidth: 0 }}
           />
         </LineChart>
       </ResponsiveContainer>

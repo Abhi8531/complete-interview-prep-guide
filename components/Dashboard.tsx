@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useStudyStore } from '@/lib/store';
-import { useAuth } from '@/hooks/useAuth';
-import { Calendar, Clock, Target, TrendingUp, BookOpen, Code, LogOut, Home } from 'lucide-react';
+import { Calendar, Clock, Target, TrendingUp, BookOpen, Code, Home } from 'lucide-react';
 import { format, differenceInDays } from 'date-fns';
 import { cppRoadmap, getTotalHours, getTotalProblems } from '@/data/roadmap';
 import { getCurrentWeekNumber, getProgressPercentage } from '@/lib/schedule-utils';
@@ -15,7 +14,6 @@ import HomePage from './HomePage';
 
 export default function Dashboard() {
   const { studyPlan, initializePlan } = useStudyStore();
-  const { logout } = useAuth();
   const [activeTab, setActiveTab] = useState<'home' | 'overview' | 'schedule' | 'topics' | 'constraints'>('home');
 
   useEffect(() => {
@@ -88,21 +86,16 @@ export default function Dashboard() {
                 >
                   Complete Interview Prep
                 </button>
-                <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">Welcome back, Abhishek! 👋</p>
+                <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">Welcome! Ready to ace your interviews? 👋</p>
               </div>
             </div>
             <div className="flex items-center space-x-2 sm:space-x-4 flex-shrink-0">
               <span className="text-xs sm:text-sm text-gray-600 hidden md:inline">
                 Target: {format(new Date(studyPlan.config.endDate), 'MMM d, yyyy')}
               </span>
-              <button
-                onClick={logout}
-                className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-3 py-1.5 text-xs sm:text-sm text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors tap-target"
-                title="Logout"
-              >
-                <LogOut className="h-4 w-4" />
-                <span className="hidden sm:inline">Logout</span>
-              </button>
+              <div className="text-xs sm:text-sm text-gray-600 px-2 sm:px-3 py-1.5 bg-green-100 text-green-800 rounded-md">
+                📖 Public Access
+              </div>
             </div>
           </div>
         </div>

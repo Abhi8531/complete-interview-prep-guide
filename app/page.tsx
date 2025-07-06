@@ -2,8 +2,6 @@
 
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
-import { useAuth } from '@/hooks/useAuth';
-import LoginScreen from '@/components/LoginScreen';
 
 const Dashboard = dynamic(() => import('@/components/Dashboard'), {
   ssr: false,
@@ -19,14 +17,13 @@ const Dashboard = dynamic(() => import('@/components/Dashboard'), {
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
-  const { isAuthenticated, isLoading, login } = useAuth();
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // Show loading screen while checking authentication or client hydration
-  if (!isClient || isLoading) {
+  // Show loading screen while client is hydrating
+  if (!isClient) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
         <div className="text-center">
@@ -37,11 +34,6 @@ export default function Home() {
     );
   }
 
-  // Show login screen if not authenticated
-  if (!isAuthenticated) {
-    return <LoginScreen onLogin={login} />;
-  }
-
-  // Show dashboard if authenticated
+  // Directly show dashboard - no authentication required
   return <Dashboard />;
 } 

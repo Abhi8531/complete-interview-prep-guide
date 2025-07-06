@@ -53,10 +53,75 @@
   }
 }
 
-/* Custom scrollbar */
+/* Mobile-first responsive design utilities */
+@layer utilities {
+  /* Touch-friendly tap targets */
+  .tap-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Mobile-optimized spacing */
+  .mobile-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Responsive text sizes */
+  .text-responsive-xs {
+    @apply text-xs sm:text-sm;
+  }
+  
+  .text-responsive-sm {
+    @apply text-sm sm:text-base;
+  }
+  
+  .text-responsive-base {
+    @apply text-base sm:text-lg;
+  }
+  
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+  
+  .text-responsive-xl {
+    @apply text-xl sm:text-2xl lg:text-3xl;
+  }
+  
+  /* Mobile-optimized grid layouts */
+  .grid-responsive-1-2 {
+    @apply grid grid-cols-1 sm:grid-cols-2;
+  }
+  
+  .grid-responsive-1-2-3 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+  
+  .grid-responsive-1-2-4 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4;
+  }
+  
+  /* Safe area insets for mobile devices */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Custom scrollbar with touch-friendly design */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 12px;
+  height: 12px;
 }
 
 ::-webkit-scrollbar-track {
@@ -71,7 +136,15 @@
   @apply bg-gray-500;
 }
 
-/* Calendar custom styles */
+/* Mobile scrollbar (thinner for touch devices) */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* Calendar custom styles with mobile responsiveness */
 .react-calendar {
   @apply w-full border-0 font-sans;
 }
@@ -80,10 +153,144 @@
   @apply relative;
 }
 
-.react-calendar__tile--active {
-  @apply bg-blue-500 text-white;
+/* Mobile-specific calendar adjustments */
+@media (max-width: 640px) {
+  .react-calendar__tile {
+    @apply text-xs;
+    min-height: 40px;
+  }
+  
+  .react-calendar__month-view__weekdays__weekday {
+    @apply text-xs;
+  }
 }
 
-.react-calendar__tile--now {
-  @apply bg-blue-100;
+/* Mobile navigation enhancements */
+@media (max-width: 768px) {
+  .mobile-nav-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .mobile-nav-scroll::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Touch-optimized form inputs */
+@media (max-width: 768px) {
+  input, textarea, select, button {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Responsive tables */
+.table-responsive {
+  @apply overflow-x-auto;
+}
+
+.table-responsive table {
+  @apply min-w-full;
+}
+
+/* Mobile-optimized modal/dialog styles */
+@media (max-width: 640px) {
+  .modal-mobile {
+    @apply w-full h-full max-w-none max-h-none rounded-none;
+  }
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .crisp-edges {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Dark mode adjustments for mobile */
+@media (prefers-color-scheme: dark) {
+  .auto-dark {
+    @apply bg-gray-900 text-gray-100;
+  }
+}
+
+/* Focus states optimized for keyboard and touch navigation */
+.focus-visible-ring {
+  @apply focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2;
+}
+
+/* Animation performance optimizations */
+.gpu-accelerated {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* Responsive image optimization */
+.responsive-img {
+  @apply w-full h-auto max-w-full;
+}
+
+/* Mobile-optimized charts and data visualization */
+@media (max-width: 640px) {
+  .chart-mobile {
+    height: 250px !important;
+  }
+  
+  .chart-mobile .recharts-text {
+    font-size: 12px !important;
+  }
+}
+
+/* Flexbox utilities for mobile layouts */
+.flex-mobile-col {
+  @apply flex flex-col sm:flex-row;
+}
+
+.flex-mobile-wrap {
+  @apply flex flex-wrap;
+}
+
+/* Grid gap responsive utilities */
+.gap-responsive {
+  @apply gap-3 sm:gap-4 lg:gap-6;
+}
+
+.gap-responsive-sm {
+  @apply gap-2 sm:gap-3 lg:gap-4;
+}
+
+/* Mobile-first button styling */
+.btn-mobile {
+  @apply px-4 py-3 text-base font-medium rounded-lg transition-colors duration-200 tap-target;
+}
+
+.btn-mobile-sm {
+  @apply px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200;
+}
+
+/* Toast notifications mobile positioning */
+@media (max-width: 640px) {
+  .toast-mobile {
+    @apply mx-4 mb-4;
+    bottom: env(safe-area-inset-bottom, 1rem);
+  }
+}
+
+/* Progress bar responsive styling */
+.progress-responsive {
+  @apply h-2 sm:h-3 lg:h-4;
+}
+
+/* Card hover effects optimized for touch */
+@media (hover: hover) and (pointer: fine) {
+  .card-hover:hover {
+    @apply shadow-lg transform -translate-y-1;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .card-hover:active {
+    @apply shadow-md;
+  }
 } 

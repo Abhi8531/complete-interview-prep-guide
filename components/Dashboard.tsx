@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { useStudyStore } from '@/lib/store';
-import { Calendar, Clock, Target, TrendingUp, BookOpen, Code } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
+import { Calendar, Clock, Target, TrendingUp, BookOpen, Code, LogOut } from 'lucide-react';
 import { format, differenceInDays } from 'date-fns';
 import { cppRoadmap, getTotalHours, getTotalProblems } from '@/data/roadmap';
 import { getCurrentWeekNumber, getProgressPercentage } from '@/lib/schedule-utils';
@@ -13,6 +14,7 @@ import ConstraintManager from './ConstraintManager';
 
 export default function Dashboard() {
   const { studyPlan, initializePlan } = useStudyStore();
+  const { logout } = useAuth();
   const [activeTab, setActiveTab] = useState<'overview' | 'schedule' | 'topics' | 'constraints'>('overview');
 
   useEffect(() => {
@@ -78,12 +80,23 @@ export default function Dashboard() {
           <div className="flex items-center justify-between h-16">
                           <div className="flex items-center">
                 <Code className="h-8 w-8 text-blue-600 mr-3" />
-                <h1 className="text-2xl font-bold text-gray-900">Comeplete Interview Prep</h1>
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">Complete Interview Prep</h1>
+                  <p className="text-sm text-gray-600">Welcome back, Abhishek! 👋</p>
+                </div>
               </div>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-600">
                 Target: {format(new Date(studyPlan.config.endDate), 'MMM d, yyyy')}
               </span>
+              <button
+                onClick={logout}
+                className="flex items-center space-x-2 px-3 py-1.5 text-sm text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors"
+                title="Logout"
+              >
+                <LogOut className="h-4 w-4" />
+                <span className="hidden sm:inline">Logout</span>
+              </button>
             </div>
           </div>
         </div>

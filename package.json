@@ -1,0 +1,37 @@
+{
+  "name": "comprehensive-interview-prep",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI-powered comprehensive technical interview preparation platform covering C++, DBMS, OS, Networks, System Design, Aptitude, and more",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.0.1",
+    "postcss": "^8",
+    "@supabase/supabase-js": "^2.38.4",
+    "openai": "^4.20.1",
+    "date-fns": "^2.30.0",
+    "react-calendar": "^4.6.0",
+    "recharts": "^2.8.0",
+    "zustand": "^4.4.7",
+    "react-hot-toast": "^2.4.1",
+    "lucide-react": "^0.294.0"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4"
+  }
+}
+ 

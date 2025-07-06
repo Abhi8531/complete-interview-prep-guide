@@ -283,7 +283,7 @@ export default function HomePage() {
                   <BookOpen className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-gray-900 truncate">{topic.title}</p>
-                    <p className="text-xs text-gray-500">{topic.estimatedHours} hours • {topic.difficulty}</p>
+                    <p className="text-xs text-gray-500">{topic.estimatedHours} hours</p>
                   </div>
                   {studyPlan.progress.completedTopics.includes(topic.id) && (
                     <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 flex-shrink-0" />

@@ -112,7 +112,7 @@ const storeImplementation = (set: any, get: any) => {
       if (!studyPlan) return;
 
       try {
-        const updatedConstraints = studyPlan.config.constraints.filter(c => c.date !== date);
+        const updatedConstraints = studyPlan.config.constraints.filter((c: any) => c.date !== date);
         const updatedConfig = { ...studyPlan.config, constraints: updatedConstraints };
         const updatedPlan = { ...studyPlan, config: updatedConfig, updatedAt: new Date().toISOString() };
 
@@ -133,7 +133,7 @@ const storeImplementation = (set: any, get: any) => {
       try {
         const updatedCompletedTopics = completed
           ? [...studyPlan.progress.completedTopics, topicId]
-          : studyPlan.progress.completedTopics.filter(id => id !== topicId);
+          : studyPlan.progress.completedTopics.filter((id: string) => id !== topicId);
 
         const updatedProgress = {
           ...studyPlan.progress,
@@ -333,11 +333,14 @@ const storeImplementation = (set: any, get: any) => {
 };
 
 export const useStudyStore = create<StudyStore>()(
-  persist(storeImplementation, {
-    name: 'study-store',
-    partialize: (state) => ({
-      studyPlan: state.studyPlan,
-      constraints: state.constraints,
-    }),
-  })
+  persist(
+    (set, get) => storeImplementation(set, get),
+    {
+      name: 'study-store',
+      partialize: (state) => ({
+        studyPlan: state.studyPlan,
+        constraints: state.constraints,
+      }),
+    }
+  )
 ); 

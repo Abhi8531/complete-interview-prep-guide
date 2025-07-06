@@ -95,7 +95,7 @@ export default function TopicList() {
           completedSubtopics,
           completionPercentage,
           estimatedHours: topic.estimatedHours,
-          practiceProblems: topic.practiceProblems,
+          practiceProblems: topic.practiceProblems || 0,
           isOnTrack,
           urgencyLevel,
           daysRemaining,

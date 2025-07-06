@@ -51,37 +51,37 @@ export default function DailyStudyPlan({ selectedDate }: Props) {
 
     setIsGenerating(true);
     
-    try {
-      // Define variables for AI context
-      const dateString = format(selectedDate, 'yyyy-MM-dd');
-      const dayType = getDayType(selectedDate, studyPlan.config);
-      const isLabDay = studyPlan.config.defaultLabDays?.includes(format(selectedDate, 'EEEE').toLowerCase()) || false;
-      
-      const dayInfo = {
+    // Define variables for AI context outside try block so they're accessible in catch
+    const dateString = format(selectedDate, 'yyyy-MM-dd');
+    const dayType = getDayType(selectedDate, studyPlan.config);
+    const isLabDay = studyPlan.config.defaultLabDays?.includes(format(selectedDate, 'EEEE').toLowerCase()) || false;
+    
+    const dayInfo = {
+      date: selectedDate,
+      dateString,
+      dayOfWeek: selectedDate.getDay(),
+      type: dayType,
+      availableHours: Math.max(1, getAvailableHours({
         date: selectedDate,
         dateString,
         dayOfWeek: selectedDate.getDay(),
         type: dayType,
-        availableHours: Math.max(1, getAvailableHours({
-          date: selectedDate,
-          dateString,
-          dayOfWeek: selectedDate.getDay(),
-          type: dayType,
-          availableHours: 0,
-          isLabDay,
-        }) || 2),
+        availableHours: 0,
         isLabDay,
-      };
+      }) || 2),
+      isLabDay,
+    };
 
-      // Get current week topics with intelligent fallback
-      let currentWeek = Math.floor((selectedDate.getTime() - new Date(studyPlan.config.startDate).getTime()) / (7 * 24 * 60 * 60 * 1000)) + 1;
-      
-      // Ensure week is within valid range
-      if (currentWeek < 1) currentWeek = 1;
-      if (currentWeek > 30) currentWeek = 30;
-      
-      let currentTopics = cppRoadmap.find(w => w.weekNumber === currentWeek)?.topics || [];
-      
+    // Get current week topics with intelligent fallback
+    let currentWeek = Math.floor((selectedDate.getTime() - new Date(studyPlan.config.startDate).getTime()) / (7 * 24 * 60 * 60 * 1000)) + 1;
+    
+    // Ensure week is within valid range
+    if (currentWeek < 1) currentWeek = 1;
+    if (currentWeek > 30) currentWeek = 30;
+    
+    let currentTopics = cppRoadmap.find(w => w.weekNumber === currentWeek)?.topics || [];
+    
+        try {
       // Enhanced fallback: if no topics for current week, get from nearest week
       if (currentTopics.length === 0) {
         // Try previous weeks first, then next weeks
@@ -253,7 +253,7 @@ export default function DailyStudyPlan({ selectedDate }: Props) {
             index: 0,
             title: 'Review C++ basics',
             estimatedTime: 60,
-            priority: 'high' as const,
+            priority: 'high' as 'high',
             reason: 'Foundation review for programming skills'
           }],
           timeSlots: [{
@@ -298,7 +298,7 @@ export default function DailyStudyPlan({ selectedDate }: Props) {
             index: 0,
             title: 'Review C++ basics',
             estimatedTime: 60,
-            priority: 'high' as const,
+            priority: 'high' as 'high',
             reason: 'Foundation review for programming skills'
           }],
           timeSlots: [{
@@ -317,7 +317,7 @@ export default function DailyStudyPlan({ selectedDate }: Props) {
     
     const incompleteSubtopics = selectedTopic.subtopics
       .map((subtopic: string, index: number) => ({ subtopic, index }))
-      .filter(({ index }) => !completedIndices.includes(index))
+      .filter(({ index }: { subtopic: string; index: number }) => !completedIndices.includes(index))
       .slice(0, Math.max(1, Math.floor(dayInfo.availableHours / 2))); // Max subtopics based on available time
     
     if (incompleteSubtopics.length === 0) {
@@ -326,11 +326,11 @@ export default function DailyStudyPlan({ selectedDate }: Props) {
       incompleteSubtopics.push({ subtopic: `Review: ${firstSubtopic}`, index: 0 });
     }
     
-    const subtopicsToStudy = incompleteSubtopics.map(({ subtopic, index }) => ({
+    const subtopicsToStudy = incompleteSubtopics.map(({ subtopic, index }: { subtopic: string; index: number }) => ({
       index,
       title: subtopic,
       estimatedTime: Math.min(90, Math.floor((dayInfo.availableHours * 60) / incompleteSubtopics.length)),
-      priority: (index === 0 ? 'high' : 'medium') as const,
+      priority: (index === 0 ? 'high' : 'medium') as 'high' | 'medium',
       reason: index === 0 ? 'Next sequential topic to master' : 'Building on previous concepts'
     }));
     
@@ -354,7 +354,7 @@ export default function DailyStudyPlan({ selectedDate }: Props) {
 
   // Generate simple time slots for fallback
   const generateSimpleTimeSlots = (subtopics: any[]) => {
-    const timeSlots = [];
+    const timeSlots: { start: string; end: string; activity: string; }[] = [];
     let currentTime = '09:00';
     
     subtopics.forEach((subtopic, index) => {

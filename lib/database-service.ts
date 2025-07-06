@@ -18,6 +18,11 @@ export class DatabaseService {
   }
 
   private getOrCreateUserId(): string {
+    // Check if we're in the browser
+    if (typeof window === 'undefined') {
+      return 'server-user-id'; // Fallback for server-side rendering
+    }
+    
     const stored = localStorage.getItem('cpp_prep_user_id');
     if (stored) return stored;
     
@@ -135,6 +140,10 @@ export class DatabaseService {
   }
 
   private async loadFullStudyPlan(planId: string): Promise<StudyPlan> {
+    if (!supabase) {
+      throw new Error('Supabase not configured');
+    }
+    
     const [planData, progress, sessions, constraints] = await Promise.all([
       supabase.from('study_plans').select('*').eq('id', planId).single(),
       supabase.from('progress').select('*').eq('study_plan_id', planId),

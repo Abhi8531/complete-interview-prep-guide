@@ -1395,7 +1395,7 @@ function calculateCompletionTarget(weekNumber: number, topic: Topic): {
   return {
     subtopicsToComplete: Math.ceil(totalSubtopics / 7), // Spread across week
     hoursToSpend: Math.ceil(totalHours / 7),
-    practiceProblems: Math.ceil(totalProblems / 7)
+    practiceProblems: Math.ceil((totalProblems || 0) / 7)
   };
 }
 
@@ -1498,7 +1498,7 @@ export const getRecommendedTopicsForToday = (
   const currentWeekTopics = cppRoadmap.find(w => w.weekNumber === currentWeek)?.topics || [];
   
   // Get urgent topics (from previous weeks that are incomplete)
-  const urgentTopics = [];
+  const urgentTopics: (Topic & { weekNumber: number; urgencyLevel: string })[] = [];
   for (let week = 1; week < currentWeek; week++) {
     const weekTopics = cppRoadmap.find(w => w.weekNumber === week)?.topics || [];
     weekTopics.forEach(topic => {

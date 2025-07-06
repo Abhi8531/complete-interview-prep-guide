@@ -1,5 +1,5 @@
 import OpenAI from 'openai';
-import { DayInfo, ScheduledTopic, generateDayInfos, calculateStudyStats } from './schedule-utils';
+import { DayInfo, generateDayInfos, calculateStudyStats } from './schedule-utils';
 import { cppRoadmap, Topic } from '@/data/roadmap';
 import { ScheduleConfig, DayConstraint } from '@/types';
 

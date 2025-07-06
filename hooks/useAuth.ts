@@ -63,12 +63,13 @@ export function useAuth() {
     // Warning at 4 minutes (1 minute before logout)
     warningTimeoutRef.current = setTimeout(() => {
       if (isAuthenticated) {
-        toast.warning('⚠️ You will be logged out in 1 minute due to inactivity', {
+        toast('⚠️ You will be logged out in 1 minute due to inactivity', {
           duration: 5000,
           style: {
             background: '#F59E0B',
             color: 'white',
           },
+          icon: '⚠️',
         });
       }
     }, 4 * 60 * 1000);

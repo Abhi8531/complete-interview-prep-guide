@@ -27,6 +27,7 @@
 A comprehensive, AI-driven study platform designed to help students ace technical interviews across multiple domains. Covers everything from **C++ programming** and **Data Structures & Algorithms** to **System Design**, **DBMS**, **Operating Systems**, **Computer Networks**, and **Aptitude** - all in a structured 30-week program.
 
 ### 🎯 Perfect For
+
 - Students preparing for technical placement drives
 - Software engineering interview candidates
 - Competitive programming enthusiasts
@@ -37,12 +38,14 @@ A comprehensive, AI-driven study platform designed to help students ace technica
 ## ✨ Features
 
 ### 🤖 **AI-Powered Intelligence**
+
 - **Smart Schedule Generation**: GPT-4 optimizes your study plan based on constraints
 - **Personalized Recommendations**: Adaptive suggestions tailored to your progress
 - **Intelligent Time Management**: Optimal topic distribution across 30 weeks
 - **Multi-domain Optimization**: Balanced preparation across all subjects
 
 ### 📅 **Advanced Scheduling System**
+
 - **30-Week Comprehensive Timeline**: From fundamentals to advanced topics
 - **College Schedule Integration**: Works around class timings (10 AM - 2 PM)
 - **Lab Day Management**: Accommodates laboratory schedules
@@ -50,6 +53,7 @@ A comprehensive, AI-driven study platform designed to help students ace technica
 - **Holiday Planning**: Smart break and holiday management
 
 ### 📊 **Progress Tracking & Analytics**
+
 - **Granular Progress Monitoring**: Track completion at topic/subtopic levels
 - **Multi-subject Dashboard**: Overview across all technical domains
 - **Visual Analytics**: Beautiful charts showing progress in each subject
@@ -63,6 +67,7 @@ A comprehensive, AI-driven study platform designed to help students ace technica
 <td width="50%">
 
 **Programming & Development**
+
 - C++ Programming (Fundamentals to Advanced)
 - Data Structures & Algorithms (1000+ problems)
 - Object-Oriented Programming
@@ -72,6 +77,7 @@ A comprehensive, AI-driven study platform designed to help students ace technica
 <td width="50%">
 
 **Core Computer Science**
+
 - Database Management Systems (DBMS)
 - Operating Systems
 - Computer Networks
@@ -83,6 +89,7 @@ A comprehensive, AI-driven study platform designed to help students ace technica
 <td width="50%">
 
 **System Design & Engineering**
+
 - System Design & Scalability
 - Software Engineering & SDLC
 - Compiler Design
@@ -91,6 +98,7 @@ A comprehensive, AI-driven study platform designed to help students ace technica
 <td width="50%">
 
 **Aptitude & Reasoning**
+
 - Quantitative Aptitude
 - Logical Reasoning
 - Verbal Ability
@@ -106,12 +114,12 @@ A comprehensive, AI-driven study platform designed to help students ace technica
 
 <div align="center">
 
-| Frontend | Backend | AI/ML | Deployment |
-|----------|---------|-------|------------|
-| Next.js 14 | Supabase | OpenAI GPT-4 | Vercel |
-| React 18 | PostgreSQL | AI Recommendations | GitHub Actions |
-| TypeScript | Real-time Sync | Smart Scheduling | - |
-| Tailwind CSS | RESTful APIs | - | - |
+| Frontend     | Backend        | AI/ML              | Deployment     |
+| ------------ | -------------- | ------------------ | -------------- |
+| Next.js 14   | Supabase       | OpenAI GPT-4       | Vercel         |
+| React 18     | PostgreSQL     | AI Recommendations | GitHub Actions |
+| TypeScript   | Real-time Sync | Smart Scheduling   | -              |
+| Tailwind CSS | RESTful APIs   | -                  | -              |
 
 </div>
 
@@ -122,6 +130,7 @@ A comprehensive, AI-driven study platform designed to help students ace technica
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 ```bash
 - Node.js 18+ installed
 - npm or yarn package manager
@@ -169,20 +178,21 @@ npm run lint     # Run ESLint
 
 <div align="center">
 
-| **Phase** | **Duration** | **Focus Areas** | **Key Topics** |
-|-----------|--------------|-----------------|----------------|
-| **🏗️ Foundation** | Weeks 1-8 | Programming Basics | C++, Control Structures, Arrays, Strings, Pointers |
-| **🔧 OOP & DSA** | Weeks 9-16 | Object-Oriented & Data Structures | Classes, Inheritance, Trees, Graphs, Linked Lists |
-| **⚡ Algorithms** | Weeks 17-20 | Algorithm Design | Searching, Sorting, DP, Greedy, Backtracking |
-| **💻 System Concepts** | Weeks 21-24 | Core CS Subjects | DBMS, OS, Networks, Software Engineering |
-| **🧠 Aptitude** | Weeks 25-27 | Problem Solving | Quantitative, Logical, Verbal Reasoning |
-| **🎯 Advanced Prep** | Weeks 28-30 | Final Preparation | Competitive Programming, Mock Tests, Revision |
+| **Phase**              | **Duration** | **Focus Areas**                   | **Key Topics**                                     |
+| ---------------------- | ------------ | --------------------------------- | -------------------------------------------------- |
+| **🏗️ Foundation**      | Weeks 1-8    | Programming Basics                | C++, Control Structures, Arrays, Strings, Pointers |
+| **🔧 OOP & DSA**       | Weeks 9-16   | Object-Oriented & Data Structures | Classes, Inheritance, Trees, Graphs, Linked Lists  |
+| **⚡ Algorithms**      | Weeks 17-20  | Algorithm Design                  | Searching, Sorting, DP, Greedy, Backtracking       |
+| **💻 System Concepts** | Weeks 21-24  | Core CS Subjects                  | DBMS, OS, Networks, Software Engineering           |
+| **🧠 Aptitude**        | Weeks 25-27  | Problem Solving                   | Quantitative, Logical, Verbal Reasoning            |
+| **🎯 Advanced Prep**   | Weeks 28-30  | Final Preparation                 | Competitive Programming, Mock Tests, Revision      |
 
 </div>
 
 ### Key Metrics
+
 - **📖 Total Topics**: 200+ comprehensive topics
-- **⏱️ Study Hours**: 800+ hours of structured learning  
+- **⏱️ Study Hours**: 800+ hours of structured learning
 - **💻 Practice Problems**: 1000+ coding and aptitude problems
 - **📊 Progress Tracking**: Real-time analytics and insights
 - **🤖 AI Recommendations**: Daily personalized study suggestions
@@ -192,21 +202,25 @@ npm run lint     # Run ESLint
 ## 📖 How to Use
 
 ### 1. **Initial Setup**
+
 - Configure your study timeline (default: July 6, 2025 - January 31, 2026)
 - Set college hours and lab days
 - Mark holidays and exam periods
 
 ### 2. **AI Schedule Generation**
+
 - Click "Regenerate Schedule" for AI-powered recommendations
 - System optimizes across all subjects based on your constraints
 - Get personalized daily study plans
 
 ### 3. **Daily Study Planning**
+
 - View AI-generated daily suggestions with time slots
 - Track topic and subtopic completion
 - Receive adaptive recommendations based on progress
 
 ### 4. **Progress Monitoring**
+
 - Monitor advancement with visual charts and analytics
 - View detailed completion percentages across subjects
 - Identify areas needing more focus
@@ -252,12 +266,14 @@ npm run lint     # Run ESLint
 We welcome contributions from the community! Here's how you can help:
 
 ### Ways to Contribute
+
 - 🐛 **Bug Reports**: Found an issue? [Report it here](../../issues)
 - 💡 **Feature Requests**: Have an idea? [Suggest it here](../../issues)
 - 📝 **Documentation**: Help improve our docs
 - 🔧 **Code Contributions**: Submit pull requests
 
 ### Getting Started
+
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
@@ -287,12 +303,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 <div align="center">
 
-| Support Type | Link |
-|--------------|------|
-| 🐛 Bug Reports | [GitHub Issues](../../issues) |
-| 💡 Feature Requests | [GitHub Issues](../../issues) |
-| 📚 Documentation | [Setup Guide](SETUP_GUIDE.md) |
-| 💬 Discussions | [GitHub Discussions](../../discussions) |
+| Support Type        | Link                                    |
+| ------------------- | --------------------------------------- |
+| 🐛 Bug Reports      | [GitHub Issues](../../issues)           |
+| 💡 Feature Requests | [GitHub Issues](../../issues)           |
+| 📚 Documentation    | [Setup Guide](SETUP_GUIDE.md)           |
+| 💬 Discussions      | [GitHub Discussions](../../discussions) |
 
 </div>
 
@@ -310,6 +326,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-*Made with ❤️ for aspiring software engineers*
+## 👨‍💻 Author
+
+**Abhishek Kumar**
+
+- GitHub: [@abhi8531](https://github.com/abhi8531)
+- Email: abhishekvnagar85@gmail.com
+- LinkedIn: [abhishekvnagar](https://linkedin.com/in/abhishekvnagar)
+
+---
+
+_Made with ❤️ for aspiring software engineers_
 
 </div>

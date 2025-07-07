@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "description": "AI-powered comprehensive technical interview preparation platform covering C++, DBMS, OS, Networks, System Design, Aptitude, and more",
+  "author": {
+    "name": "Abhishek Kumar",
+    "email": "abhishekvnagar85@gmail.com",
+    "url": "https://github.com/abhi8531"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
